@@ -61,6 +61,18 @@ button {
   transform: translateX(-50%);
   animation: flicker 0.5s infinite alternate;
 }
+.cake.cut::after {
+  content: "";
+  position: absolute;
+  width: 2px;
+  height: 150px;
+  background: red;
+  left: 50%;
+  top: 0;
+  transform: translateX(-50%) scaleY(0);
+  transform-origin: top;
+  animation: cutCake 1s forwards;
+}
 .balloon {
   position: absolute;
   bottom: -50px;
@@ -87,6 +99,17 @@ button {
   0% { transform: translateY(0); }
   100% { transform: translateY(100vh); }
 }
+@keyframes cutCake {
+  to {
+    transform: translateX(-50%) scaleY(1);
+  }
+}
+p {
+  font-size: 1.2em;
+  margin: 10px 20px;
+  color: #fff;
+  line-height: 1.5em;
+}
 </style>
 </head>
 <body>
@@ -100,7 +123,18 @@ button {
     <div class="candle"></div>
     <div class="flame"></div>
   </div>
-  <h2>Wishing you endless joy and love! ✨</h2>
+
+  <h2>❤️ To My Dearest Simita ❤️</h2>
+  <p>
+    From the moment I met you, my world has been brighter, sweeter, and more beautiful.  
+    On your special day, I just want to say — you are not just the reason I smile, you are my heart, my happiness, my everything.  
+    Every candle on your cake today shines less brightly than you do in my life.  
+    May your day be filled with all the love you give me every day.  
+    I love you more than words can ever say. ❤️🌹
+  </p>
+  <p>
+    🎉 Happy Birthday, my love. Here's to endless memories and countless birthdays together. 🎂🥂
+  </p>
 </div>
 
 <audio id="music" src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"></audio>
@@ -109,6 +143,8 @@ button {
 function showSurprise() {
   document.getElementById('surprise').style.display = 'block';
   document.getElementById('music').play();
+
+  document.querySelector('.cake').classList.add('cut');
 
   // Balloons
   for (let i = 0; i < 20; i++) {
