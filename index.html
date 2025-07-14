@@ -3,159 +3,82 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Happy Birthday Simita!</title>
-<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+<title>Happy Birthday Simita ❤️</title>
 <style>
 body {
   margin: 0;
   padding: 0;
-  background: linear-gradient(120deg, #fbd3e9, #bb377d);
-  font-family: 'Pacifico', cursive;
-  text-align: center;
-  overflow-x: hidden;
+  background: radial-gradient(circle at center, #000428, #004e92);
+  overflow: hidden;
+  font-family: 'Arial', sans-serif;
   color: #fff;
+  text-align: center;
 }
+
 h1 {
-  margin-top: 30px;
-  font-size: 3em;
+  margin-top: 50px;
+  font-size: 2.5em;
 }
-button {
-  margin-top: 20px;
-  padding: 15px 30px;
-  font-size: 1em;
-  background-color: #fff;
-  border: none;
-  border-radius: 10px;
-  color: #bb377d;
-  cursor: pointer;
+
+p {
+  font-size: 1.2em;
 }
-#surprise {
-  display: none;
-  margin-top: 20px;
-}
-.cake-container {
-  position: relative;
-  width: 300px;
-  height: 200px;
-  margin: 0 auto;
-}
-.cake-half {
+
+.heart {
   position: absolute;
-  width: 150px;
-  height: 200px;
-  top: 0;
-  transition: transform 1s ease;
+  top: -10px;
+  font-size: 20px;
+  animation: fall 5s linear infinite;
 }
-.left-half {
-  left: 0;
-}
-.right-half {
-  left: 150px;
-}
-.left-half.cut {
-  transform: translateX(-80px) rotate(-5deg);
-}
-.right-half.cut {
-  transform: translateX(80px) rotate(5deg);
-}
+
 .balloon {
   position: absolute;
   bottom: -50px;
   font-size: 2em;
-  animation: float 5s linear infinite;
+  animation: float 6s linear infinite;
 }
-.confetti {
-  position: absolute;
-  width: 8px;
-  height: 8px;
-  background: gold;
-  top: -10px;
-  animation: fall 3s linear infinite;
+
+@keyframes fall {
+  0% { transform: translateY(0) rotate(0); opacity: 1; }
+  100% { transform: translateY(110vh) rotate(360deg); opacity: 0.3; }
 }
-.cat-big {
-  font-size: 8em;
-  margin-top: 20px;
-  animation: wiggle 1.5s infinite alternate;
-}
+
 @keyframes float {
   0% { transform: translateY(0); }
   100% { transform: translateY(-110vh); }
-}
-@keyframes fall {
-  0% { transform: translateY(0); }
-  100% { transform: translateY(100vh); }
-}
-@keyframes wiggle {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(10deg); }
-}
-p {
-  font-size: 1.2em;
-  margin: 10px 20px;
-  color: #fff;
-  line-height: 1.5em;
 }
 </style>
 </head>
 <body>
 
-<h1>🎉 Happy Birthday Simita! 🎂</h1>
-<p>Click below to see your full surprise! 🧁</p>
-<button onclick="showSurprise()">See your Surprise</button>
+<h1>🎉 Happiest Birthday My Beautiful ❤️</h1>
+<p>The world got luckier the day you were born…</p>
+<p>Wishing you love, smiles, and endless happiness today and forever. 🎂✨</p>
 
-<div id="surprise">
-  <div class="cake-container">
-    <img src="https://i.ibb.co/1dBqc58/cake-left.png" class="cake-half left-half" id="leftCake">
-    <img src="https://i.ibb.co/zmJDyRb/cake-right.png" class="cake-half right-half" id="rightCake">
-  </div>
-
-  <h2>❤️ To My Dearest Simita ❤️</h2>
-  <p>
-    From the moment I met you, my world has been brighter, sweeter, and more beautiful.  
-    On your special day, I just want to say — you are not just the reason I smile, you are my heart, my happiness, my everything.  
-    Every candle on your cake today shines less brightly than you do in my life.  
-    May your day be filled with all the love you give me every day.  
-    I love you more than words can ever say. ❤️🌹
-  </p>
-  <p>
-    🎉 Happy Birthday, my love. Here's to endless memories and countless birthdays together. 🎂🥂
-  </p>
-
-  <div class="cat-big">🐱</div>
-</div>
-
-<audio id="song" src="https://files.fm/down.php?i=27ytcuvy4&n=Ami%20Tomar%20Bhalobasate%20Nijeke%20Sajai.mp3"></audio>
-<audio id="meow" src="https://www.fesliyanstudios.com/play-mp3/6485"></audio>
+<audio autoplay loop>
+  <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+</audio>
 
 <script>
-function showSurprise() {
-  document.getElementById('surprise').style.display = 'block';
+// Hearts
+for (let i = 0; i < 50; i++) {
+  let heart = document.createElement('div');
+  heart.className = 'heart';
+  heart.textContent = '💖';
+  heart.style.left = Math.random() * 100 + 'vw';
+  heart.style.animationDuration = 2 + Math.random() * 3 + 's';
+  heart.style.fontSize = 10 + Math.random() * 30 + 'px';
+  document.body.appendChild(heart);
+}
 
-  document.getElementById('song').play();
-
-  setTimeout(() => {
-    document.getElementById('meow').play();
-    document.getElementById('leftCake').classList.add('cut');
-    document.getElementById('rightCake').classList.add('cut');
-  }, 2000);
-
-  for (let i = 0; i < 20; i++) {
-    let b = document.createElement('div');
-    b.className = 'balloon';
-    b.textContent = '🎈';
-    b.style.left = Math.random() * 100 + 'vw';
-    b.style.animationDuration = 3 + Math.random() * 4 + 's';
-    document.body.appendChild(b);
-  }
-
-  for (let i = 0; i < 50; i++) {
-    let c = document.createElement('div');
-    c.className = 'confetti';
-    c.style.left = Math.random() * 100 + 'vw';
-    c.style.backgroundColor = ['#f44336','#e91e63','#9c27b0','#2196f3','#4caf50','#ffeb3b'][Math.floor(Math.random()*6)];
-    c.style.animationDuration = 2 + Math.random() * 3 + 's';
-    document.body.appendChild(c);
-  }
+// Balloons
+for (let i = 0; i < 10; i++) {
+  let balloon = document.createElement('div');
+  balloon.className = 'balloon';
+  balloon.textContent = '🎈';
+  balloon.style.left = Math.random() * 100 + 'vw';
+  balloon.style.animationDuration = 4 + Math.random() * 3 + 's';
+  document.body.appendChild(balloon);
 }
 </script>
 
