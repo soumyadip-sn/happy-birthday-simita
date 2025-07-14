@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday Simita!</title>
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+<style>
+body {
+  background: linear-gradient(120deg, #fbd3e9, #bb377d);
+  text-align: center;
+  font-family: 'Pacifico', cursive;
+  color: #fff;
+  margin: 0;
+  padding: 0;
+}
+h1 {
+  margin-top: 50px;
+  font-size: 3em;
+}
+button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  font-size: 1em;
+  background-color: #ff69b4;
+  border: none;
+  color: white;
+  cursor: pointer;
+  border-radius: 5px;
+}
+#surprise {
+  display: none;
+  margin-top: 30px;
+}
+.cake {
+  width: 100px;
+  height: 100px;
+  background: #fff;
+  margin: 20px auto;
+  border-radius: 10px;
+  position: relative;
+}
+.candle {
+  width: 10px;
+  height: 30px;
+  background: #ff69b4;
+  position: absolute;
+  top: -30px;
+  left: 45px;
+}
+.flame {
+  width: 10px;
+  height: 10px;
+  background: orange;
+  border-radius: 50%;
+  position: absolute;
+  top: -40px;
+  left: 45px;
+  animation: flicker 0.5s infinite alternate;
+}
+@keyframes flicker {
+  0% { opacity: 1; }
+  100% { opacity: 0.5; }
+}
+</style>
+</head>
+<body>
+
+<h1>🎉 Happy Birthday Simita! 🎂</h1>
+<p>Click below to see your fancy surprise! 🧁</p>
+<button onclick="showSurprise()">See your Surprise</button>
+
+<div id="surprise">
+  <div class="cake">
+    <div class="candle"></div>
+    <div class="flame"></div>
+  </div>
+  <h2>Wishing you endless joy and love! ✨</h2>
+</div>
+
+<script>
+function showSurprise() {
+  document.getElementById('surprise').style.display = 'block';
+}
+</script>
+
+</body>
+</html>
