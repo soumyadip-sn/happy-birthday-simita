@@ -9,126 +9,118 @@ body {
   margin: 0;
   padding: 0;
   background: radial-gradient(circle at center, #000428, #004e92);
-  overflow: hidden;
   font-family: 'Arial', sans-serif;
   color: #fff;
   text-align: center;
+  overflow-x: hidden;
 }
 
 h1 {
-  margin-top: 20px;
+  margin-top: 30px;
   font-size: 2.5em;
 }
 
-p {
-  font-size: 1.2em;
+button {
+  margin-top: 20px;
+  padding: 15px 30px;
+  font-size: 1em;
+  background-color: #fff;
+  border: none;
+  border-radius: 10px;
+  color: #bb377d;
+  cursor: pointer;
 }
 
-.heart {
-  position: absolute;
-  top: -10px;
-  font-size: 20px;
-  animation: fall 5s linear infinite;
-}
-
-.balloon {
-  position: absolute;
-  bottom: -50px;
-  font-size: 2em;
-  animation: float 6s linear infinite;
+#surprise {
+  display: none;
+  margin-top: 20px;
+  position: relative;
 }
 
 .cake {
-  margin: 30px auto;
   width: 200px;
-  height: 150px;
-  background: pink;
+  margin: 20px auto;
   position: relative;
-  border-radius: 10px;
-  cursor: pointer;
-  transition: all 0.5s ease;
+}
+
+.cake img {
+  width: 100%;
+}
+
+.knife {
+  width: 80px;
+  position: absolute;
+  top: 50px;
+  left: -100px;
+  transition: left 2s ease;
+}
+
+.knife.cut {
+  left: 150px;
 }
 
 .candle {
-  width: 10px;
-  height: 40px;
-  background: yellow;
   position: absolute;
-  top: -40px;
+  top: 20px;
   left: 50%;
   transform: translateX(-50%);
+  width: 10px;
+  height: 30px;
+  background: yellow;
 }
 
 .flame {
-  width: 10px;
-  height: 20px;
-  background: orange;
-  border-radius: 50%;
   position: absolute;
-  top: -60px;
+  top: -15px;
   left: 50%;
   transform: translateX(-50%);
-  animation: flicker 0.5s infinite alternate;
+  width: 10px;
+  height: 15px;
+  background: orange;
+  border-radius: 50%;
+  animation: flicker 0.3s infinite alternate;
 }
 
 @keyframes flicker {
   0% { opacity: 1; }
   100% { opacity: 0.5; }
 }
-
-@keyframes fall {
-  0% { transform: translateY(0) rotate(0); opacity: 1; }
-  100% { transform: translateY(110vh) rotate(360deg); opacity: 0.3; }
-}
-
-@keyframes float {
-  0% { transform: translateY(0); }
-  100% { transform: translateY(-110vh); }
-}
 </style>
 </head>
 <body>
 
-<h1>🎉 Happiest Birthday Simita ❤️</h1>
-<p>The world got luckier the day you were born…</p>
-<p>Wishing you love, smiles, and endless happiness today and forever. 🎂✨</p>
+<h1>🎉 Happy Birthday Simita ❤️</h1>
+<p>Click below to see your surprise! 🎂</p>
 
-<div class="cake" onclick="cutCake()">
-  <div class="candle"></div>
-  <div class="flame"></div>
+<button onclick="showSurprise()">See Your Surprise</button>
+
+<div id="surprise">
+  <div class="cake">
+    <img src="https://i.postimg.cc/y8fMdHnT/cake.png" alt="Cake">
+    <div class="candle"></div>
+    <div class="flame"></div>
+    <img src="https://i.postimg.cc/wjVVLZVb/knife.png" class="knife" id="knife" alt="Knife">
+  </div>
+  <p style="font-size:1.5em; color:#ffccff; display:none;" id="cutMsg">
+    🎂 The cake is cut! Happy Birthday Simita! ❤️
+  </p>
 </div>
-
-<p id="cut-message" style="display:none; font-size:1.5em; color:#ffccff;">🎉 The cake is cut! Happy Birthday Simita! ❤️</p>
 
 <audio autoplay loop>
   <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
 </audio>
 
 <script>
-// Hearts
-for (let i = 0; i < 50; i++) {
-  let heart = document.createElement('div');
-  heart.className = 'heart';
-  heart.textContent = '💖';
-  heart.style.left = Math.random() * 100 + 'vw';
-  heart.style.animationDuration = 2 + Math.random() * 3 + 's';
-  heart.style.fontSize = 10 + Math.random() * 30 + 'px';
-  document.body.appendChild(heart);
-}
+function showSurprise() {
+  document.getElementById('surprise').style.display = 'block';
 
-// Balloons
-for (let i = 0; i < 10; i++) {
-  let balloon = document.createElement('div');
-  balloon.className = 'balloon';
-  balloon.textContent = '🎈';
-  balloon.style.left = Math.random() * 100 + 'vw';
-  balloon.style.animationDuration = 4 + Math.random() * 3 + 's';
-  document.body.appendChild(balloon);
-}
+  setTimeout(() => {
+    document.getElementById('knife').classList.add('cut');
+  }, 500);
 
-function cutCake() {
-  document.querySelector('.cake').style.display = 'none';
-  document.getElementById('cut-message').style.display = 'block';
+  setTimeout(() => {
+    document.getElementById('cutMsg').style.display = 'block';
+  }, 2500);
 }
 </script>
 
