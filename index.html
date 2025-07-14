@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday Simita!</title>
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+<style>
+body {
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(120deg, #fbd3e9, #bb377d);
+  font-family: 'Pacifico', cursive;
+  text-align: center;
+  overflow: hidden;
+  color: #fff;
+}
+h1 {
+  margin-top: 50px;
+  font-size: 3em;
+}
+button {
+  margin-top: 20px;
+  padding: 15px 30px;
+  font-size: 1em;
+  background-color: #fff;
+  border: none;
+  border-radius: 10px;
+  color: #bb377d;
+  cursor: pointer;
+}
+#surprise {
+  display: none;
+  margin-top: 30px;
+}
+.cake {
+  width: 160px;
+  height: 160px;
+  margin: 30px auto;
+  position: relative;
+}
+.slice {
+  width: 80px;
+  height: 160px;
+  background: pink;
+  position: absolute;
+  top: 0;
+  transition: transform 1s ease;
+  border-radius: 10px 0 0 10px;
+}
+.slice.right {
+  left: 80px;
+  border-radius: 0 10px 10px 0;
+}
+.slice.cut-left {
+  transform: translateX(-60px) rotate(-10deg);
+}
+.slice.cut-right {
+  transform: translateX(60px) rotate(10deg);
+}
+.candle {
+  width: 10px;
+  height: 40px;
+  background: yellow;
+  position: absolute;
+  top: -40px;
+  left: 75px;
+}
+.flame {
+  width: 10px;
+  height: 20px;
+  background: orange;
+  border-radius: 50%;
+  position: absolute;
+  top: -60px;
+  left: 75px;
+  animation: flicker 0.5s infinite alternate;
+}
+.balloon {
+  position: absolute;
+  bottom: -50px;
+  font-size: 2em;
+  animation: float 5s linear infinite;
+}
+.confetti {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background: gold;
+  top: -10px;
+  animation: fall 3s linear infinite;
+}
+.cat {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  font-size: 3em;
+  animation: moveCat 4s infinite alternate ease-in-out;
+}
+@keyframes flicker {
+  0% { opacity: 1; }
+  100% { opacity: 0.5; }
+}
+@keyframes float {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-110vh); }
+}
+@keyframes fall {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(100vh); }
+}
+@keyframes moveCat {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(20px) rotate(10deg); }
+}
+p {
+  font-size: 1.2em;
+  margin: 10px 20px;
+  color: #fff;
+  line-height: 1.5em;
+}
+</style>
+</head>
+<body>
+
+<h1>🎉 Happy Birthday Simita! 🎂</h1>
+<p>Click below to see your full surprise! 🧁</p>
+<button onclick="showSurprise()">See your Surprise</button>
+
+<div id="surprise">
+  <div class="cake">
+    <div class="slice left"></div>
+    <div class="slice right"></div>
+    <div class="candle"></div>
+    <div class="flame"></div>
+  </div>
+
+  <h2>❤️ To My Dearest Simita ❤️</h2>
+  <p>
+    From the moment I met you, my world has been brighter, sweeter, and more beautiful.  
+    On your special day, I just want to say — you are not just the reason I smile, you are my heart, my happiness, my everything.  
+    Every candle on your cake today shines less brightly than you do in my life.  
+    May your day be filled with all the love you give me every day.  
+    I love you more than words can ever say. ❤️🌹
+  </p>
+  <p>
+    🎉 Happy Birthday, my love. Here's to endless memories and countless birthdays together. 🎂🥂
+  </p>
+</div>
+
+<div class="cat">🐱</div>
+
+<script>
+function showSurprise() {
+  document.getElementById('surprise').style.display = 'block';
+
+  document.querySelector('.slice.left').classList.add('cut-left');
+  document.querySelector('.slice.right').classList.add('cut-right');
+
+  for (let i = 0; i < 20; i++) {
+    let b = document.createElement('div');
+    b.className = 'balloon';
+    b.textContent = '🎈';
+    b.style.left = Math.random() * 100 + 'vw';
+    b.style.animationDuration = 3 + Math.random() * 4 + 's';
+    document.body.appendChild(b);
+  }
+
+  for (let i = 0; i < 50; i++) {
+    let c = document.createElement('div');
+    c.className = 'confetti';
+    c.style.left = Math.random() * 100 + 'vw';
+    c.style.backgroundColor = ['#f44336','#e91e63','#9c27b0','#2196f3','#4caf50','#ffeb3b'][Math.floor(Math.random()*6)];
+    c.style.animationDuration = 2 + Math.random() * 3 + 's';
+    document.body.appendChild(c);
+  }
+}
+</script>
+
+</body>
+</html>
