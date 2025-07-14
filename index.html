@@ -40,6 +40,25 @@ button {
   margin: 30px auto;
   border-radius: 10px;
   position: relative;
+  overflow: hidden;
+}
+.slice {
+  width: 75px;
+  height: 150px;
+  background: pink;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transition: transform 1s ease;
+}
+.slice.right {
+  left: 75px;
+}
+.slice.cut-left {
+  transform: translateX(-50px) rotate(-10deg);
+}
+.slice.cut-right {
+  transform: translateX(50px) rotate(10deg);
 }
 .candle {
   width: 10px;
@@ -61,18 +80,6 @@ button {
   transform: translateX(-50%);
   animation: flicker 0.5s infinite alternate;
 }
-.cake.cut::after {
-  content: "";
-  position: absolute;
-  width: 2px;
-  height: 150px;
-  background: red;
-  left: 50%;
-  top: 0;
-  transform: translateX(-50%) scaleY(0);
-  transform-origin: top;
-  animation: cutCake 1s forwards;
-}
 .balloon {
   position: absolute;
   bottom: -50px;
@@ -87,6 +94,13 @@ button {
   top: -10px;
   animation: fall 3s linear infinite;
 }
+.cat {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  font-size: 3em;
+  animation: wiggle 2s infinite alternate;
+}
 @keyframes flicker {
   0% { opacity: 1; }
   100% { opacity: 0.5; }
@@ -99,10 +113,9 @@ button {
   0% { transform: translateY(0); }
   100% { transform: translateY(100vh); }
 }
-@keyframes cutCake {
-  to {
-    transform: translateX(-50%) scaleY(1);
-  }
+@keyframes wiggle {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(10deg); }
 }
 p {
   font-size: 1.2em;
@@ -120,6 +133,8 @@ p {
 
 <div id="surprise">
   <div class="cake">
+    <div class="slice left"></div>
+    <div class="slice right"></div>
     <div class="candle"></div>
     <div class="flame"></div>
   </div>
@@ -137,14 +152,15 @@ p {
   </p>
 </div>
 
-<audio id="music" src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"></audio>
+<div class="cat">🐱</div>
 
 <script>
 function showSurprise() {
   document.getElementById('surprise').style.display = 'block';
-  document.getElementById('music').play();
 
-  document.querySelector('.cake').classList.add('cut');
+  // Cake cut animation
+  document.querySelector('.slice.left').classList.add('cut-left');
+  document.querySelector('.slice.right').classList.add('cut-right');
 
   // Balloons
   for (let i = 0; i < 20; i++) {
