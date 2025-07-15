@@ -5,124 +5,60 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Happy Birthday Simita ❤️</title>
 <style>
-body {
-  margin: 0;
-  padding: 0;
-  background: radial-gradient(circle at center, #000428, #004e92);
-  font-family: 'Arial', sans-serif;
-  color: #fff;
-  text-align: center;
-  overflow-x: hidden;
-}
-
-h1 {
-  margin-top: 30px;
-  font-size: 2.5em;
-}
-
-button {
-  margin-top: 20px;
-  padding: 15px 30px;
-  font-size: 1em;
-  background-color: #fff;
-  border: none;
-  border-radius: 10px;
-  color: #bb377d;
-  cursor: pointer;
-}
-
-#surprise {
-  display: none;
-  margin-top: 20px;
-  position: relative;
-}
-
-.cake {
-  width: 200px;
-  margin: 20px auto;
-  position: relative;
-}
-
-.cake img {
-  width: 100%;
-}
-
-.knife {
-  width: 80px;
-  position: absolute;
-  top: 50px;
-  left: -100px;
-  transition: left 2s ease;
-}
-
-.knife.cut {
-  left: 150px;
-}
-
-.candle {
-  position: absolute;
-  top: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 10px;
-  height: 30px;
-  background: yellow;
-}
-
-.flame {
-  position: absolute;
-  top: -15px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 10px;
-  height: 15px;
-  background: orange;
-  border-radius: 50%;
-  animation: flicker 0.3s infinite alternate;
-}
-
-@keyframes flicker {
-  0% { opacity: 1; }
-  100% { opacity: 0.5; }
-}
+  body { margin:0; overflow:hidden; }
+  canvas { display:block; }
 </style>
 </head>
 <body>
-
-<h1>🎉 Happy Birthday Simita ❤️</h1>
-<p>Click below to see your surprise! 🎂</p>
-
-<button onclick="showSurprise()">See Your Surprise</button>
-
-<div id="surprise">
-  <div class="cake">
-    <img src="https://i.postimg.cc/y8fMdHnT/cake.png" alt="Cake">
-    <div class="candle"></div>
-    <div class="flame"></div>
-    <img src="https://i.postimg.cc/wjVVLZVb/knife.png" class="knife" id="knife" alt="Knife">
-  </div>
-  <p style="font-size:1.5em; color:#ffccff; display:none;" id="cutMsg">
-    🎂 The cake is cut! Happy Birthday Simita! ❤️
-  </p>
-</div>
-
-<audio autoplay loop>
-  <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
-</audio>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128/examples/js/loaders/GLTFLoader.js"></script>
 
 <script>
-function showSurprise() {
-  document.getElementById('surprise').style.display = 'block';
+const scene = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
+const renderer = new THREE.WebGLRenderer({antialias:true});
+renderer.setSize(window.innerWidth, window.innerHeight);
+document.body.appendChild(renderer.domElement);
 
-  setTimeout(() => {
-    document.getElementById('knife').classList.add('cut');
-  }, 500);
+// Lighting
+const light = new THREE.PointLight(0xffffff, 1);
+light.position.set(10, 10, 10);
+scene.add(light);
 
-  setTimeout(() => {
-    document.getElementById('cutMsg').style.display = 'block';
-  }, 2500);
+const ambient = new THREE.AmbientLight(0x404040);
+scene.add(ambient);
+
+// Ground
+const planeGeometry = new THREE.PlaneGeometry(500, 500);
+const planeMaterial = new THREE.MeshPhongMaterial({color:0x222222});
+const plane = new THREE.Mesh(planeGeometry, planeMaterial);
+plane.rotation.x = - Math.PI/2;
+scene.add(plane);
+
+// Load Cake Model
+const loader = new THREE.GLTFLoader();
+loader.load(
+  'https://raw.githubusercontent.com/mrdoob/three.js/dev/examples/models/gltf/DamagedHelmet/glTF/DamagedHelmet.gltf', // replace with cake model
+  function (gltf) {
+    const cake = gltf.scene;
+    cake.scale.set(2,2,2);
+    cake.position.y = 0.5;
+    scene.add(cake);
+  },
+  undefined,
+  function (error) {
+    console.error(error);
+  }
+);
+
+camera.position.z = 5;
+camera.position.y = 2;
+
+function animate() {
+  requestAnimationFrame(animate);
+  renderer.render(scene, camera);
 }
+animate();
 </script>
-
 </body>
 </html>
